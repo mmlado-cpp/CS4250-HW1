@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
-# FOR: CS 4250- Assignment #1
-# TIME SPENT: how long it took you to complete the assignment
+# AUTHOR: Martin Lado
+# FILENAME: indexing.py
+# SPECIFICATION: simple program for finding a document term matrix of a document
+# FOR: CS 4250 - Assignment #1
+# TIME SPENT: 2 hours
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard arrays
@@ -77,6 +77,7 @@ for document in documents:
 #--> add your Python code here
 headers = ["Love", "Cat", "Dog"]
 print("Doc Term Matrix", headers)
+
 counter = 0
 for row in docTermMatrix:
     counter += 1
