@@ -10,6 +10,7 @@
 
 #Importing some Python libraries
 import csv
+import math
 
 documents = []
 
@@ -20,21 +21,58 @@ with open('collection.csv', 'r') as csvfile:
          if i > 0:  # skipping the header
             documents.append (row[0])
 
+print (documents)
 #Conducting stopword removal. Hint: use a set to define your stopwords.
 #--> add your Python code here
-stopWords = {?}
+stopWords = {"I", "and", "She", "her", "They", "their"}
+
+for document in documents:
+    index = documents.index(document)
+    documents[index] = document.split(" ")
+
+for document in documents:
+    for word in document:
+        if word in stopWords:
+            document.remove(word)
+
+print (documents)
 
 #Conducting stemming. Hint: use a dictionary to map word variations to their stem.
 #--> add your Python code here
-steeming = {?}
+stemming = {'loves': 'love','cats': 'cat', 'dogs': 'dog'}
+
+for document in documents:
+    for word in document:
+        index = document.index(word)
+        if word in stemming.keys():
+            word = stemming[word]
+        document[index] = word
+print (documents)
 
 #Identifying the index terms.
 #--> add your Python code here
 terms = []
+for document in documents:
+    for word in document:
+        if word not in terms:
+            terms.append(word)
+
+print(terms)
 
 #Building the document-term matrix by using the tf-idf weights.
 #--> add your Python code here
 docTermMatrix = []
+for document in documents:
+    #print(document)
+    docRow = []
+    for term in terms:
+        tf = document.count(term) / len(document)
+        df = sum(1 for doc in documents if term in doc)
+        idf = math.log10(len(documents) / df)
+        tfidf = tf * idf
+        docRow.append(tfidf)
+    docTermMatrix.append(docRow)
 
 #Printing the document-term matrix.
 #--> add your Python code here
+print(docTermMatrix)
