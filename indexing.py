@@ -21,7 +21,7 @@ with open('collection.csv', 'r') as csvfile:
          if i > 0:  # skipping the header
             documents.append (row[0])
 
-print (documents)
+
 #Conducting stopword removal. Hint: use a set to define your stopwords.
 #--> add your Python code here
 stopWords = {"I", "and", "She", "her", "They", "their"}
@@ -35,7 +35,7 @@ for document in documents:
         if word in stopWords:
             document.remove(word)
 
-print (documents)
+
 
 #Conducting stemming. Hint: use a dictionary to map word variations to their stem.
 #--> add your Python code here
@@ -47,7 +47,7 @@ for document in documents:
         if word in stemming.keys():
             word = stemming[word]
         document[index] = word
-print (documents)
+
 
 #Identifying the index terms.
 #--> add your Python code here
@@ -57,7 +57,7 @@ for document in documents:
         if word not in terms:
             terms.append(word)
 
-print(terms)
+
 
 #Building the document-term matrix by using the tf-idf weights.
 #--> add your Python code here
@@ -75,4 +75,15 @@ for document in documents:
 
 #Printing the document-term matrix.
 #--> add your Python code here
-print(docTermMatrix)
+headers = ["Love", "Cat", "Dog"]
+print("Doc Term Matrix", headers)
+counter = 0
+for row in docTermMatrix:
+    counter += 1
+    row.insert(0, f"Document {counter}")
+    for item in row:
+        if isinstance(item,str):
+            print(f"{item}\t", end="")
+        else:
+            print(f"{item:.4f}\t", end="")
+    print()
